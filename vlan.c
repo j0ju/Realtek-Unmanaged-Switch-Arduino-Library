@@ -679,7 +679,7 @@ static rtk_api_ret_t _rtk_vlan_protoAndPortBasedVlan_add(rtk_port_t port, rtk_vl
     {
         if ((retVal = rtl8367c_getAsicVlanProtocolBasedGroupData(i, &ppb_data_cfg)) != RT_ERR_OK)
             return retVal;
-        tmp = pInfo->frame_type;
+        tmp = (rtl8367c_provlan_frametype) pInfo->frame_type;
         if (ppb_data_cfg.etherType == pInfo->proto_type && ppb_data_cfg.frameType == tmp)
         {
             /*Already exist*/
@@ -705,7 +705,7 @@ static rtk_api_ret_t _rtk_vlan_protoAndPortBasedVlan_add(rtk_port_t port, rtk_vl
     else if (empty < RTL8367C_PROTOVLAN_GROUPNO)
     {
         /*No exist index, but have empty index*/
-        ppb_data_cfg.frameType = pInfo->frame_type;
+        ppb_data_cfg.frameType = (rtl8367c_provlan_frametype) pInfo->frame_type;
         ppb_data_cfg.etherType = pInfo->proto_type;
         if ((retVal = rtl8367c_setAsicVlanProtocolBasedGroupData(empty, &ppb_data_cfg)) != RT_ERR_OK)
             return retVal;
