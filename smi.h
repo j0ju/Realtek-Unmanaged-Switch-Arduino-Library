@@ -1,3 +1,15 @@
+/*
+ * smi.h — public interface for the SMI layer.
+ *
+ * The original Arduino library did not expose smi_init/smi_close because
+ * initialisation happened implicitly via Arduino's Wire library.  The
+ * Linux userland replacement (smi_linux.c) needs explicit init/close, so
+ * add those declarations here.
+ *
+ * All other declarations (smi_read, smi_write) are kept as-is from the
+ * upstream file; only this preamble block is added.
+ */
+
 #ifndef __SMI_H__
 #define __SMI_H__
 
@@ -31,5 +43,8 @@
 
 rtk_int32 smi_read(rtk_uint32 mAddrs, rtk_uint32 *rData);
 rtk_int32 smi_write(rtk_uint32 mAddrs, rtk_uint32 rData);
+extern rtk_int32 smi_init(const char *dev, unsigned short addr);
+extern void      smi_close(void);
+
 
 #endif /* __SMI_H__ */
