@@ -1,7 +1,7 @@
 #ifndef _RTL8367C_TYPES_H_
 #define _RTL8367C_TYPES_H_
 
-#include <stdio.h>
+#include <stdint.h>
 
 typedef uint64_t rtk_uint64;
 typedef int64_t rtk_int64;
